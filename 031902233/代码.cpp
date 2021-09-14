@@ -90,7 +90,7 @@ void search()
 		{
 			string ans;
 			if (w[n].hanying == 1)//如果敏感词为汉字
-			{
+			{ 
 				for (i = 0, m = 0, f = 0; i < org.length(); i++)
 				{
 					if (org[i] == w[n].word[m] && org[i + 1] == w[n].word[m + 1] && org[i + 2] == w[n].word[m + 2])
