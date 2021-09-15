@@ -11,5 +11,5 @@ string Utf8ToGbk(const char* src_str)
 	string strTemp(szGBK);
 	if (wszGBK) delete[] wszGBK;
 	if (szGBK) delete[] szGBK;
-	return strTemp;
+	return strTemp; 
 }
