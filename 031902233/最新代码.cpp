@@ -45,6 +45,7 @@ void read()
 }
 void hanzi(string ans, string org)
 {
+	
 	for (i = 0, m = 0, f = 0; i < org.length(); i++)
 	{
 		if (org[i] == w[n].word[m] && org[i + 1] == w[n].word[m + 1] && org[i + 2] == w[n].word[m + 2])//utf-8汉字占3字节
@@ -52,7 +53,7 @@ void hanzi(string ans, string org)
 			f = 1;
 			ans = ans + org[i] + org[i + 1] + org[i + 2];
 			m = m + 3;
-			if (m > w[n].word.length() - 1)//超出长度则表示已找到敏感词，并开始继续查找
+			if (m > w[n].word.length() - 1 && ans.length()> w[n].word.length() - 1)//超出长度则表示已找到敏感词，并开始继续查找
 			{
 				m = 0;
 				f = 0;
