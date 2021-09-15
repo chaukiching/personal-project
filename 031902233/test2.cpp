@@ -8,7 +8,7 @@ int f = 0;//作为判断是否遇到敏感词的标志
 int num = 0;//例文中敏感词数
 int l;//敏感词的数量
 class mgcs
-{
+{  
 public:
 	string words;//敏感词
 	string anss;
