@@ -13,3 +13,4 @@ string Utf8ToGbk(const char* src_str)
 	if (szGBK) delete[] szGBK;
 	return strTemp; 
 }
+//参考网络上的
