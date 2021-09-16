@@ -1,2 +1,1 @@
 # personal-project
-SensitiveWordFilter
