@@ -1,0 +1,90 @@
+void hanzi(string ans, string org)
+{
+	
+	for (i = 0, m = 0, f = 0; i < org.length(); i++)
+	{
+		if (org[i] == w[n].word[m] && org[i + 1] == w[n].word[m + 1] && org[i + 2] == w[n].word[m + 2])//utf-8汉字占3字节
+		{
+			f = 1;
+			ans = ans + org[i] + org[i + 1] + org[i + 2];
+			m = m + 3;
+			if (m > w[n].word.length() - 1 && ans.length()> w[n].word.length() - 1)//超出长度则表示已找到敏感词，并开始继续查找
+			{
+				m = 0;
+				f = 0;
+				s[num].words = w[n].word;
+				s[num].anss = ans;
+				s[num].h = j;
+				num++;
+				ans = "";
+				continue;
+			}
+			i = i + 2;
+			continue;
+		}
+		if (org[i] >= '0' && org[i] <= '9' || org[i] >= 'A' && org[i] <= 'Z' || org[i] >= 'a' && org[i] <= 'z')
+		{
+			f = 0;
+			ans = "";
+			continue;
+		}//敏感词中插入字母、数字、换行的若干字符就不属于敏感词
+		if (f == 1)
+			ans = ans + org[i];
+	}
+}
+void yinwen(string ans, string org)
+{
+	for (i = 0, m = 0, f = 0; i < org.length(); i++)
+	{
+		if ((org[i] >= 'A' && org[i] <= 'Z') || (org[i] >= 'a' && org[i] <= 'z'))
+		{
+			if (org[i] == w[n].word[m] || org[i] - w[n].word[m] == 32 || w[n].word[m] - org[i] == 32)//英文文本不区分大小写，在敏感词中不能插入换行、字母
+			{
+				f = 1;
+				ans = ans + org[i];
+				m = m + 1;
+				if (m > w[n].word.length() - 1)//超出长度则表示已找到敏感词，并开始继续查找
+				{
+					m = 0;
+					f = 0;
+					s[num].words = w[n].word;
+					s[num].anss = ans;
+					s[num].h = j;
+					num++;
+					ans = "";
+				}
+			}
+			else
+			{
+				f = 0;
+				m = 0;
+				ans = "";
+			}
+			continue;
+		}
+		if (f == 1)
+			ans = ans + org[i];
+	}
+}
+void search()
+{
+	string org;//例文
+	cin >> org;
+	ifstream ifile;
+	ifile.open(org);// 以读模式打开待检测文件
+	if (!ifile) cout << "open fail" << endl;
+	else
+	while (getline(ifile, org))// 从文件读取每行例文
+	{
+		j++;
+		for (n = 0; n < l; n++)//用循环查找每个敏感词
+		{
+			string ans;
+			if (w[n].hanying == 1)//如果敏感词为汉字
+				hanzi(ans,org);
+			if (w[n].hanying == 0)//如果敏感词为英文
+				yinwen(ans,org);
+		}
+	}
+	ifile.close();// 关闭打开的文件
+}
