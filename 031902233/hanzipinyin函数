@@ -35,3 +35,4 @@ string hanzipinyin(string strText)
 	}
 	return strValue;
 }
+//参考网络上的
