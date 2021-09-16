@@ -1,5 +1,6 @@
 #include<iostream>
 #include<fstream>
+#include<stdlib.h>
 #include<string>
 using namespace std;
 int i = 0, n = 0, m = 0;
@@ -7,16 +8,14 @@ int j = 0;//行
 int f = 0;//作为判断是否遇到敏感词的标志
 int num = 0;//例文中敏感词数
 int l;//敏感词的数量
-class mgcs
+struct mgcs
 {
-public:
 	string words;//敏感词
 	string anss;
 	int h;
 }s[1000];//作为输出的答案
-class wordd
+struct wordd
 {
-public:
 	string word;
 	int hanying;//敏感词的类型
 	int zishu;//字数
