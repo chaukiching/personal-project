@@ -85,6 +85,34 @@ int yinwen(string ans, string org,int num, int  n, int j)
 	}
 	return num;
 }
+int search(int j,int num,int l)
+{
+	string org;
+	cin >> org;
+	ifstream ifile;
+	ifile.open(org);// 以读模式打开待检测文件
+	if (!ifile)
+	{
+		cout << "open fail" << endl;
+	}
+	else
+	{
+		while (getline(ifile, org))// 从文件读取每行例文
+		{
+			j++;
+			for (int n = 0; n < l; n++)//用循环查找每个敏感词
+			{
+				string ans;
+				if (w[n].hanying == 1)//如果敏感词为汉字
+					num = hanzi(ans, org, num, n, j);
+				if (w[n].hanying == 0)//如果敏感词为英文
+					num = yinwen(ans, org, num, n, j);
+			}
+		}
+	}
+	ifile.close();// 关闭打开的文件
+	return num;
+}
 int main()
 {
 	int num = 0;//例文中敏感词的数量
@@ -114,29 +142,7 @@ int main()
 			}
 		}
 		ifile.close();// 关闭打开的文件
-		string org;
-		cin >> org;
-		ifile.open(org);// 以读模式打开待检测文件
-		if (!ifile)
-		{
-			cout << "open fail" << endl;
-		}
-		else
-		{
-			while (getline(ifile, org))// 从文件读取每行例文
-			{
-				j++;
-				for (n = 0; n < l; n++)//用循环查找每个敏感词
-				{
-					string ans;
-					if (w[n].hanying == 1)//如果敏感词为汉字
-						num = hanzi(ans, org, num, n, j);
-					if (w[n].hanying == 0)//如果敏感词为英文
-						num = yinwen(ans, org, num, n, j);
-				}
-			}
-		}
-		ifile.close();// 关闭打开的文件
+		num = search(j, num, l);
 		ofstream outfile;
 		cin >> x;
 		outfile.open(x);// 以写模式打开答案文件
