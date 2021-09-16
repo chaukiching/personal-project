@@ -147,7 +147,6 @@ void print()//将答案写入文件中
 }
 int main()
 {
-	system("chcp 65001");
 	read();
 	search();
 	print();
