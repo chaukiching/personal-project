@@ -104,7 +104,7 @@ void yinwen(string ans, string org)
 				m = 0;
 				ans = "";
 			}
-			continue;
+			continue; 
 		}
 		if (f == 1)
 			ans = ans + org[i];
